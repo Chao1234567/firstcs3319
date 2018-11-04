@@ -16,7 +16,7 @@ GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost';
 
 FLUSH PRIVILEGES;
 
-SHOW TABLES:
+SHOW TABLES;
 
 CREATE TABLE products (proID CHAR(2) NOT NULL, description CHAR(20) NOT NULL, cost INT NOT NULL, numInstock INT NOT NULL,PRIMARY KEY(proID));
 
