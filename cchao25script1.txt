@@ -1,0 +1,29 @@
+SHOW DATABASES;
+
+DROP DATABASE IF EXISTS cchao25assign2db;
+
+CREATE DATABASE cchao25assign2db;
+
+USE cchao25assign2db;
+
+GRANT USAGE ON *.* TO 'ta'@'localhost';
+
+DROP USER 'ta'@'localhost';
+
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319';
+
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost';
+
+FLUSH PRIVILEGES;
+
+SHOW TABLES:
+
+CREATE TABLE products (proID CHAR(2) NOT NULL, description CHAR(20) NOT NULL, cost INT NOT NULL, numInstock INT NOT NULL,PRIMARY KEY(proID));
+
+CREATE TABLE agents(agentID CHAR(2) NOT NULL, fname CHAR(30) NOT NULL, lname CHAR(30) NOT NULL, city CHAR(15) NOT NULL, commision DECIMAL NOT NULL, PRIMARY KEY(agentID));
+
+CREATE TABLE costomers( cosID CHAR(2) NOT NULL, fname CHAR(30) NOT NULL, lname CHAR(30) NOT NULL, city CHAR(15) NOT NULL, phoneNum CHAR(10) NOT NULL, servID CHAR(2) NOT NULL, PRIMARY KEY(cosID), FOREIGN KEY(servID) REFERENCES agents(agentID));
+
+SHOW TABLES;
+
+
