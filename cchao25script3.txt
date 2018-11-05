@@ -1,0 +1,55 @@
+--  Query 1
+SELECT description FROM products;
+--  Query 2
+
+SELECT DISTINCT(city) FROM customers;
+--  Query 3
+
+SELECT * FROM agents ORDER BY city;
+--  Query 4
+
+SELECT fname,lname FROM customers WHERE city = 'Springfield';
+--  Query 5
+
+SELECT lname FROM customers WHERE servID = '11';
+--  Query 6
+
+SELECT description FROM products WHERE description REGEXP '[Pp]ad';
+--  Query 7
+
+SELECT customers.lname, products.description, purchase.quantity FROM customers,products,purchase WHERE customers.cusID = purchase.cusID AND products.proID = purchase.procID;
+--  Query 8
+
+SELECT SUM(quantity) AS HomersTotalPurchase FROM purchase WHERE cusID in (SELECT cusID FROM customers WHERE fname= 'Homer');
+--  Query 9
+
+SELECT customers.fname,customers.lname,SUM(purchase.quantity) FROM customers,purchase WHERE customers.cusID = purchase.cusID GROUP BY customers.cusID;
+--  Query 10
+
+SELECT description, numInstock FROM products WHERE products.proID NOT IN(SELECT procID FROM purchase);
+--  Query 11
+
+SELECT description, numInstock FROM products WHERE products.proID NOT IN(SELECT procID FROM purchase WHERE cusID IN (SELECT cusID FROM customers WHERE fname = 'Fred' AND lname = 'Flintstone'));
+--  Query 12
+
+SELECT customers.fname,customers.lname,agents.fname,agents.lname FROM customers,agents WHERE customers.city = agents.city;
+--  Query 13
+
+SELECT SUM(quantity) AS KneeSales FROM purchase WHERE procID = '78';
+--  Query 14
+
+SELECT procID FROM purchase HAVING COUNT(procID) >= 3;
+--  Query 15
+
+SELECT fname,lname FROM agents WHERE agentID in (SELECT servId FROM customers WHERE cusID in(SELECT cusID FROM purchase));
+
+
+
+
+
+
+
+
+
+
+
