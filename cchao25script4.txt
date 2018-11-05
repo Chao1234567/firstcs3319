@@ -1,0 +1,11 @@
+USE cchao25assign2db;
+SELECT * FROM customers;
+SELECT * FROM agents;
+SELECT * FROM purchase;
+SELECT * FROM products;
+CREATE VIEW view1 AS SELECT customers.fname, customers.lname, products.description, purchase.quantity, products.cost, products.cost*purchase.quantity AS totleCost FROM customers,products,purchase WHERE customers.cusID = purchase.cusID AND products.proID = purchase.procID ORDER BY customers.lname;
+SELECT * FROM view1 WHERE totleCost > 100;
+
+-- We cannot actually delete something in the view. View is just a view what helps us to collect information from separate tables but not the data itself. 
+-- We could delete data from the table which also "delete" according data of the view but we can not delete actual data from view
+
