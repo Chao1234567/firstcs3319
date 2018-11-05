@@ -12,36 +12,39 @@ INSERT INTO agents VALUES('33', 'David', 'Letterman','Bedrock', 100.00);
 INSERT INTO agents VALUES('11', 'Regis', 'Philbin', 'Boston',33.00);
 INSERT INTO agents VALUES('12', 'Rosie', 'Cox', 'Ottawa',50.00);
 
-INSERT INTO customers VALUES('21', 'Homer', 'Simpson', 'Springfield','686-8956','99','Hugh','Grant');
-INSERT INTO customers VALUES('31', 'Sideshow', 'Bob', 'Springfield', '686-5555','66','Rosie', 'ODonnell');
-INSERT INTO customers VALUES('12', 'Monty', 'Burns', 'Springfield', '789-0000','99','Hugh','Grant');
-INSERT INTO customers VALUES('15', 'Fred', 'Flintstone', 'Bedrock', '777-2345','11','Regis', 'Philbin');
-INSERT INTO customers VALUES('13', 'Super', 'Man', 'Kypto', '888-1234','33','David', 'Letterman');
-INSERT INTO customers VALUES('10', 'Barney', 'Rubble', 'Bedrock', '777-1234','11','Regis','Philbin');
-INSERT INTO customers VALUES('14', 'Peter', 'Griffens', 'Providence','987-4567','99','Hugh','Grant');
+INSERT INTO customers VALUES('21', 'Homer', 'Simpson', 'Springfield','686-8956','99');
+INSERT INTO customers VALUES('31', 'Sideshow', 'Bob', 'Springfield', '686-5555','66');
+INSERT INTO customers VALUES('12', 'Monty', 'Burns', 'Springfield', '789-0000','99');
+INSERT INTO customers VALUES('15', 'Fred', 'Flintstone', 'Bedrock', '777-2345','11');
+INSERT INTO customers VALUES('13', 'Super', 'Man', 'Kypto', '888-1234','33');
+INSERT INTO customers VALUES('10', 'Barney', 'Rubble', 'Bedrock', '777-1234','11');
+INSERT INTO customers VALUES('14', 'Peter', 'Griffens', 'Providence','987-4567','99');
 
-INSERT INTO purchase VALUES('99','21',20, 'Homer', 'Simpson');
-INSERT INTO purchase VALUES('12','21',14, 'Homer', 'Simpson');
-INSERT INTO purchase VALUES('66','21',10, 'Homer', 'Simpson');
-INSERT INTO purchase VALUES('99','31',1,'Sideshow', 'Bob');
-INSERT INTO purchase VALUES('12','31',2,'Sideshow', 'Bob');
-INSERT INTO purchase VALUES('78','31',4,'Sideshow', 'Bob');
-INSERT INTO purchase VALUES('66','31',2,'Sideshow', 'Bob');
-INSERT INTO purchase VALUES('66','15',2, 'Fred', 'Flintstone');
-INSERT INTO purchase VALUES('78','15',2, 'Fred', 'Flintstone');
-INSERT INTO purchase VALUES('66','14',19, 'Peter', 'Griffens');
+INSERT INTO purchase VALUES('99','21',20);
+INSERT INTO purchase VALUES('12','21',14);
+INSERT INTO purchase VALUES('66','21',10);
+INSERT INTO purchase VALUES('99','31',1);
+INSERT INTO purchase VALUES('12','31',2);
+INSERT INTO purchase VALUES('78','31',4);
+INSERT INTO purchase VALUES('66','31',2);
+INSERT INTO purchase VALUES('66','15',2);
+INSERT INTO purchase VALUES('78','15',2);
+INSERT INTO purchase VALUES('66','14',19);
 
 SELECT * FROM products;
 SELECT * FROM agents;
 SELECT * FROM customers;
 SELECT * FROM purchase;
+
 
 UPDATE customers SET fname = 'Wonder', lname = 'Woman' WHERE fname = 'Super' AND lname = 'Man';
-UPDATE purchase SET quantity = 5 WHERE fname = 'Sideshow';
-UPDATE customers SET city = 'Boston' WHERE servFname = 'Regis';
+UPDATE purchase SET quantity = 5 WHERE cusID in (SELECT cusID FROM customers WHERE fname = 'Sideshow');
+UPDATE customers SET city = 'Boston' WHERE servID in (SELECT agentID FROM agents WHERE fname = 'Regis');
+
 
 SELECT * FROM products;
 SELECT * FROM agents;
 SELECT * FROM customers;
 SELECT * FROM purchase;
+
 

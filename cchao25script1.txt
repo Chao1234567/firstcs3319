@@ -22,9 +22,9 @@ CREATE TABLE products (proID CHAR(2) NOT NULL, description CHAR(20) NOT NULL, co
 
 CREATE TABLE agents(agentID CHAR(2) NOT NULL, fname CHAR(30) NOT NULL, lname CHAR(30) NOT NULL, city CHAR(15) NOT NULL, commision DECIMAL NOT NULL, PRIMARY KEY(agentID));
 
-CREATE TABLE customers( cusID CHAR(2) NOT NULL, fname CHAR(30) NOT NULL, lname CHAR(30) NOT NULL, city CHAR(15) NOT NULL, phoneNum CHAR(10) NOT NULL, servID CHAR(2), servFname CHAR(20) , servLname CHAR(20) ,PRIMARY KEY(cusID), FOREIGN KEY(servID) REFERENCES agents(agentID));
+CREATE TABLE customers( cusID CHAR(2) NOT NULL, fname CHAR(30) NOT NULL, lname CHAR(30) NOT NULL, city CHAR(15) NOT NULL, phoneNum CHAR(10) NOT NULL, servID CHAR(2),PRIMARY KEY(cusID), FOREIGN KEY(servID) REFERENCES agents(agentID));
 
-CREATE TABLE purchase(procID CHAR(2) NOT NULL, cusID CHAR(2) NOT NULL, quantity INT NOT NULL,fname CHAR(20) NOT NULL, lname CHAR(20) NOT NULL, PRIMARY KEY(procID, cusID), FOREIGN KEY(procID) REFERENCES products(proID), FOREIGN KEY(cusID) REFERENCES customers(cusID));
+CREATE TABLE purchase(procID CHAR(2) NOT NULL, cusID CHAR(2) NOT NULL, quantity INT NOT NULL, PRIMARY KEY(procID, cusID), FOREIGN KEY(procID) REFERENCES products(proID), FOREIGN KEY(cusID) REFERENCES customers(cusID));
 
 SHOW TABLES;
 
