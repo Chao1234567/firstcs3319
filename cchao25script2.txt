@@ -1,3 +1,4 @@
+USE cchao25assign2db;
 INSERT INTO products VALUES('12', 'Socks', 2.00 ,100);
 INSERT INTO products VALUES('11','BIKE',150.00,200);
 INSERT INTO products VALUES('99','Helmet',29.00,30);
