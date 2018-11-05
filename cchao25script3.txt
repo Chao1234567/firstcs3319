@@ -1,3 +1,4 @@
+USE cchao25assign2db;
 --  Query 1
 SELECT description FROM products;
 --  Query 2
