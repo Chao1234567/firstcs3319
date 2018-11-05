@@ -43,7 +43,7 @@ SELECT SUM(quantity) AS KneeSales FROM purchase WHERE procID = '78';
 SELECT description FROM products WHERE proID in (SELECT procID FROM purchase HAVING COUNT(procID)>3);
 --  Query 15
 
-SELECT fname,lname FROM agents WHERE agentID in (SELECT servId FROM customers WHERE cusID in(SELECT cusID FROM purchase));
+SELECT fname,lname FROM agents WHERE agentID in (SELECT servId FROM customers WHERE cusID in(SELECT cusID FROM purchase WHERE procID in (SELECT proID FROM products WHERE description = 'Knee Pads')));
 
 
 
