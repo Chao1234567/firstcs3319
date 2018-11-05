@@ -1,0 +1,128 @@
+--------------
+SELECT description FROM products
+--------------
+
+description
+BIKE
+Socks
+Elbow pads
+Knee Pads
+Roller Blades
+Helmet
+--------------
+SELECT DISTINCT(city) FROM customers
+--------------
+
+city
+Boston
+Springfield
+Kypto
+Providence
+--------------
+SELECT * FROM agents ORDER BY city
+--------------
+
+agentID	fname	lname	city	commision
+33	David	Letterman	Bedrock	100
+11	Regis	Philbin	Boston	33
+22	Countney	Cox	New York	25
+12	Rosie	Cox	Ottawa	50
+66	Rosie	ODonnell	Ottawa	100
+99	Hugh	Grant	Springfield	16
+--------------
+SELECT fname,lname FROM customers WHERE city = 'Springfield'
+--------------
+
+fname	lname
+Monty	Burns
+Homer	Simpson
+Sideshow	Bob
+--------------
+SELECT lname FROM customers WHERE servID = '11'
+--------------
+
+lname
+Rubble
+Flintstone
+--------------
+SELECT description FROM products WHERE description REGEXP '[Pp]ad'
+--------------
+
+description
+Elbow pads
+Knee Pads
+--------------
+SELECT customers.lname, products.description, purchase.quantity FROM customers,products,purchase WHERE customers.cusID = purchase.cusID AND products.proID = purchase.procID
+--------------
+
+lname	description	quantity
+Simpson	Socks	14
+Bob	Socks	5
+Griffens	Elbow pads	19
+Flintstone	Elbow pads	2
+Simpson	Elbow pads	10
+Bob	Elbow pads	5
+Flintstone	Knee Pads	2
+Bob	Knee Pads	5
+Simpson	Helmet	20
+Bob	Helmet	5
+--------------
+SELECT SUM(quantity) AS HomersTotalPurchase FROM purchase WHERE cusID in (SELECT cusID FROM customers WHERE fname= 'Homer')
+--------------
+
+HomersTotalPurchase
+44
+--------------
+SELECT customers.fname,customers.lname,SUM(purchase.quantity) FROM customers,purchase WHERE customers.cusID = purchase.cusID GROUP BY customers.cusID
+--------------
+
+fname	lname	SUM(purchase.quantity)
+Peter	Griffens	19
+Fred	Flintstone	4
+Homer	Simpson	44
+Sideshow	Bob	20
+--------------
+SELECT description, numInstock FROM products WHERE products.proID NOT IN(SELECT procID FROM purchase)
+--------------
+
+description	numInstock
+BIKE	200
+Roller Blades	89
+--------------
+SELECT description, numInstock FROM products WHERE products.proID NOT IN(SELECT procID FROM purchase WHERE cusID IN (SELECT cusID FROM customers WHERE fname = 'Fred' AND lname = 'Flintstone'))
+--------------
+
+description	numInstock
+BIKE	200
+Socks	100
+Roller Blades	89
+Helmet	30
+--------------
+SELECT customers.fname,customers.lname,agents.fname,agents.lname FROM customers,agents WHERE customers.city = agents.city
+--------------
+
+fname	lname	fname	lname
+Barney	Rubble	Regis	Philbin
+Monty	Burns	Hugh	Grant
+Fred	Flintstone	Regis	Philbin
+Homer	Simpson	Hugh	Grant
+Sideshow	Bob	Hugh	Grant
+--------------
+SELECT SUM(quantity) AS KneeSales FROM purchase WHERE procID = '78'
+--------------
+
+KneeSales
+7
+--------------
+SELECT description FROM products WHERE proID in (SELECT procID FROM purchase HAVING COUNT(procID)>3)
+--------------
+
+description
+Elbow pads
+--------------
+SELECT fname,lname FROM agents WHERE agentID in (SELECT servId FROM customers WHERE cusID in(SELECT cusID FROM purchase WHERE procID in (SELECT proID FROM products WHERE description = 'Knee Pads')))
+--------------
+
+fname	lname
+Regis	Philbin
+Rosie	ODonnell

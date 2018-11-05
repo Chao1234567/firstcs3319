@@ -1,0 +1,67 @@
+--------------
+SHOW DATABASES
+--------------
+
+Database
+information_schema
+CLASS3
+cchao25assign2db
+mysql
+performance_schema
+--------------
+DROP DATABASE IF EXISTS cchao25assign2db
+--------------
+
+--------------
+CREATE DATABASE cchao25assign2db
+--------------
+
+--------------
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+--------------
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost'
+--------------
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+--------------
+CREATE TABLE products (proID CHAR(2) NOT NULL, description CHAR(20) NOT NULL, cost FLOAT NOT NULL, numInstock INT NOT NULL,PRIMARY KEY(proID))
+--------------
+
+--------------
+CREATE TABLE agents(agentID CHAR(2) NOT NULL, fname CHAR(30) NOT NULL, lname CHAR(30) NOT NULL, city CHAR(15) NOT NULL, commision DECIMAL NOT NULL, PRIMARY KEY(agentID))
+--------------
+
+--------------
+CREATE TABLE customers( cusID CHAR(2) NOT NULL, fname CHAR(30) NOT NULL, lname CHAR(30) NOT NULL, city CHAR(15) NOT NULL, phoneNum CHAR(10) NOT NULL, servID CHAR(2),PRIMARY KEY(cusID), FOREIGN KEY(servID) REFERENCES agents(agentID))
+--------------
+
+--------------
+CREATE TABLE purchase(procID CHAR(2) NOT NULL, cusID CHAR(2) NOT NULL, quantity INT NOT NULL, PRIMARY KEY(procID, cusID), FOREIGN KEY(procID) REFERENCES products(proID), FOREIGN KEY(cusID) REFERENCES customers(cusID))
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+Tables_in_cchao25assign2db
+agents
+customers
+products
+purchase
