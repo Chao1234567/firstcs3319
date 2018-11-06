@@ -1,3 +1,5 @@
+Warning: Using a password on the command line interface can be insecure.
+ERROR 1064 (42000) at line 10: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> DELETE FROM agents WHERE city = 'Springfield'' at line 1
 --------------
 SELECT * FROM customers
 --------------
@@ -60,3 +62,22 @@ Sideshow	Bob	Helmet	5	29	145
 Peter	Griffens	Elbow pads	19	14.25	270.75
 Homer	Simpson	Elbow pads	10	14.25	142.5
 Homer	Simpson	Helmet	20	29	580
+--------------
+DELETE FROM products WHERE description ='Ipad'
+--------------
+
+--------------
+SELECT * FROM products
+--------------
+
+proID	description	cost	numInstock
+11	BIKE	150	200
+12	Socks	2	100
+66	Elbow pads	14.25	120
+78	Knee Pads	12.15	70
+88	Roller Blades	75	89
+99	Helmet	29	30
+--------------
+mysql> DELETE FROM agents WHERE city = 'Springfield'
+--------------
+
